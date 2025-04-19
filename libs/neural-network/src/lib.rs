@@ -1,10 +1,9 @@
-mod matrix_network;
+pub mod matrix_network;
 mod util;
 
 use rand::{Rng, RngCore};
 use std::iter::once;
 use matrix_network::*;
-use util::*;
 
 #[derive(Debug)]
 pub struct LayerTopology {

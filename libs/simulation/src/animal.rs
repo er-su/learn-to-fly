@@ -9,13 +9,13 @@ pub struct Animal {
     pub(crate) speed: f32,
 
     pub(crate) eye: Eye,
-    pub(crate) brain: Brain,
+    pub(crate) brain: MatrixBrain,
 
     pub(crate) satiation: usize,
 }
 
 impl Animal {
-    fn new(eye: Eye, brain: Brain, rng: &mut dyn RngCore) -> Self {
+    fn new(eye: Eye, brain: MatrixBrain, rng: &mut dyn RngCore) -> Self {
         Self {
             position: rng.gen(),
             rotation: rng.gen(),
@@ -28,7 +28,7 @@ impl Animal {
 
     pub fn random(rng: &mut dyn RngCore) -> Self {
         let eye = Eye::default();
-        let brain = Brain::random(rng, &eye);
+        let brain = MatrixBrain::random(rng, &eye);
 
         Self::new(eye, brain, rng)
     }
@@ -50,7 +50,7 @@ impl Animal {
         rng: &mut dyn RngCore
     ) -> Self {
         let eye = Eye::default();
-        let brain = Brain::from_chromosome(chromosome, &eye);
+        let brain = MatrixBrain::from_chromosome(chromosome, &eye);
 
         Self::new(eye, brain, rng)
     }

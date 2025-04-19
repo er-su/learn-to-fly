@@ -1,6 +1,6 @@
 use rand::{Rng, RngCore};
 
-use crate::{util::{matrix_vector_mult, vector_vector_add}, Layer, LayerTopology};
+use crate::*;
 
 #[derive(Debug)]
 pub struct MatrixNetwork {
@@ -104,8 +104,8 @@ impl MatrixLayer {
     fn forward(&self, inputs: Vec<f32>) -> Vec<f32> {
         assert_eq!(inputs.len(), self.num_inputs);
         
-        let mut ans: Vec<f32> = matrix_vector_mult(&self.weights, &inputs, self.num_outputs, self.num_inputs);
-        ans = vector_vector_add(&ans, &self.bias);
+        let mut ans: Vec<f32> = util::matrix_vector_mult(&self.weights, &inputs, self.num_outputs, self.num_inputs);
+        ans = util::vector_vector_add(&ans, &self.bias);
         ans.into_iter()
             .map(|val| val.max(0.0))
             .collect()
@@ -114,9 +114,7 @@ impl MatrixLayer {
 
 mod tests {
     use rand::thread_rng;
-
     use super::*;
-
 
     #[test]
     pub fn testing_weights() {

@@ -6,6 +6,7 @@ mod animal_individual;
 mod brain;
 
 use lib_neural_network as nn;
+use nn::matrix_network as mn;
 use lib_genetic_algorithm as ga;
 use nalgebra as na;
 use rand::{RngCore, Rng};
