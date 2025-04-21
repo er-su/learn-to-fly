@@ -1,3 +1,5 @@
+use lib_neural_network::{matrix_network::MatrixNetwork, LayerTopology};
+
 use crate::*;
 
 #[derive(Debug)]
@@ -5,12 +7,35 @@ pub struct Brain {
     pub(crate) nn: nn::Network,
 }
 
+#[allow(unused)]
 impl Brain {
     pub fn random(rng: &mut dyn RngCore, eye: &Eye) -> Self {
         Self {
             nn: nn::Network::random(rng, &Self::topology(eye)),
         }
     }
+
+    pub fn from_config(rng: &mut dyn RngCore, eye: &Eye, config: config::Config) -> Self {
+        let mut top: Vec<LayerTopology> = Vec::new();
+        top.push(LayerTopology {
+            neurons: config.num_eye_cells,
+        });
+
+        for _ in 0..config.num_hidden_layers {
+            top.push(LayerTopology {
+                neurons: config.hidden_layer_size,
+            })
+        }
+
+        top.push(LayerTopology{
+            neurons: 2
+        });
+
+        Self {
+            nn: nn::Network::random(rng, top.as_slice())
+        }
+    }
+
 
     pub(crate) fn as_chromosome(&self) -> ga::Chromosome {
         self.nn.weights().collect()
@@ -40,6 +65,7 @@ impl Brain {
             },
         ]
     }
+
 }
 
 #[derive(Debug)]
@@ -51,6 +77,27 @@ impl MatrixBrain {
     pub fn random(rng: &mut dyn RngCore, eye: &Eye) -> Self {
         Self {
             nn: mn::MatrixNetwork::random(rng, &Self::topology(eye)),
+        }
+    }
+
+    pub fn from_config(rng: &mut dyn RngCore, config: config::Config) -> Self {
+        let mut top: Vec<LayerTopology> = Vec::new();
+        top.push(LayerTopology {
+            neurons: config.num_eye_cells,
+        });
+
+        for _ in 0..config.num_hidden_layers {
+            top.push(LayerTopology {
+                neurons: config.hidden_layer_size,
+            })
+        }
+
+        top.push(LayerTopology{
+            neurons: 2
+        });
+
+        MatrixBrain {
+            nn: MatrixNetwork::random(rng, top.as_slice())
         }
     }
 

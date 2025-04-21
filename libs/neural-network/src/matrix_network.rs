@@ -112,6 +112,7 @@ impl MatrixLayer {
     }
 }
 
+#[allow(unused)]
 mod tests {
     use rand::thread_rng;
     use super::*;

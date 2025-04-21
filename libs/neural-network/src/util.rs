@@ -1,5 +1,3 @@
-use crate::*;
-
 pub fn matrix_vector_mult(matrix: &[f32], vector: &[f32], num_rows: usize, num_cols: usize) -> Vec<f32> {
     assert_eq!(matrix.len(), num_rows * num_cols);
     assert_eq!(vector.len(), num_cols);
@@ -23,6 +21,7 @@ pub fn vector_vector_add(vector1: &[f32], vector2: &[f32]) -> Vec<f32> {
         .collect()
 }
 
+#[allow(unused)]
 mod test {
     use super::*;
 

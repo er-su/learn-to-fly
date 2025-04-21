@@ -4,6 +4,7 @@ mod world;
 mod eye;
 mod animal_individual;
 mod brain;
+mod config;
 
 use lib_neural_network as nn;
 use nn::matrix_network as mn;
@@ -70,6 +71,10 @@ impl Simulation {
                 Some(stats) => return stats,
             }
         }
+    }
+
+    pub fn optimize_from_config(&mut self, rng: &mut dyn RngCore, config: config::Config) -> Vec<Statistics> {
+        todo!()
     }
 
     fn evolve(&mut self, rng: &mut dyn RngCore) {

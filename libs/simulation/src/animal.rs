@@ -1,6 +1,5 @@
-use std::cmp::Ordering;
-
 use crate::*;
+
 
 #[derive(Debug)]
 pub struct Animal {
@@ -24,6 +23,13 @@ impl Animal {
             brain,
             satiation: 0,
         }
+    }
+
+    pub fn from_config(rng: &mut dyn RngCore, config: config::Config) -> Self {
+        let eye = Eye::from_config(config);
+        let brain = MatrixBrain::from_config(rng, config);
+
+        Self::new(eye, brain, rng)
     }
 
     pub fn random(rng: &mut dyn RngCore) -> Self {
