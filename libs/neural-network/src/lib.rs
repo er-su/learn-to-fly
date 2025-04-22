@@ -4,6 +4,9 @@ mod util;
 use rand::{Rng, RngCore};
 use std::iter::once;
 
+#[macro_use]
+extern crate approx;
+
 #[derive(Debug)]
 pub struct LayerTopology {
     pub neurons: usize,

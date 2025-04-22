@@ -1,5 +1,4 @@
 use rand::{Rng, RngCore};
-
 use crate::*;
 
 #[derive(Debug)]
@@ -114,6 +113,7 @@ impl MatrixLayer {
 
 #[allow(unused)]
 mod tests {
+    use approx::assert_relative_eq;
     use rand::thread_rng;
     use super::*;
 
@@ -133,7 +133,25 @@ mod tests {
         let mut rng = thread_rng();
         let network = MatrixNetwork::random(&mut rng, &topology);
         let weights = network.weights().collect::<Vec<f32>>();
-        // Passed
+        
+
         assert_eq!(weights.len(), 5 * 10 + 10 * 2 + 10 + 2);
+        
+        let new_network = MatrixNetwork::from_weights(&topology, weights);
+        assert_eq!(network.layers.len(), new_network.layers.len());
+        let layers = network.layers;
+        let new_layers = new_network.layers;
+        for i in 0..layers.len() {
+            let layer = &layers[i];
+            let new_layer = &new_layers[i];
+
+
+            for j in 0..layer.weights.len() {
+                assert_relative_eq!(layer.weights[j], new_layer.weights[j]);
+            }
+            for j in 0..layer.bias.len() {
+                assert_relative_eq!(layer.bias[j], new_layer.bias[j]);
+            }
+        }
     }
 }
