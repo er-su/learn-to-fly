@@ -15,7 +15,7 @@ impl Brain {
         }
     }
 
-    pub fn from_config(rng: &mut dyn RngCore, eye: &Eye, config: config::Config) -> Self {
+    pub fn from_config(rng: &mut dyn RngCore, eye: &Eye, config: Config) -> Self {
         let mut top: Vec<LayerTopology> = Vec::new();
         top.push(LayerTopology {
             neurons: config.num_eye_cells,
@@ -37,12 +37,12 @@ impl Brain {
     }
 
 
-    pub(crate) fn as_chromosome(&self) -> ga::Chromosome {
+    pub(crate) fn as_chromosome(&self) -> Chromosome {
         self.nn.weights().collect()
     }
 
     pub(crate) fn from_chromosome(
-        chromosome: ga::Chromosome,
+        chromosome: Chromosome,
         eye: &Eye
     ) -> Self {
         Self {
@@ -80,7 +80,7 @@ impl MatrixBrain {
         }
     }
 
-    pub fn from_config(rng: &mut dyn RngCore, config: config::Config) -> Self {
+    pub fn from_config(rng: &mut dyn RngCore, config: Config) -> Self {
         let mut top: Vec<LayerTopology> = Vec::new();
         top.push(LayerTopology {
             neurons: config.num_eye_cells,
@@ -101,12 +101,12 @@ impl MatrixBrain {
         }
     }
 
-    pub(crate) fn as_chromosome(&self) -> ga::Chromosome {
+    pub(crate) fn as_chromosome(&self) -> Chromosome {
         self.nn.weights().collect()
     }
 
     pub(crate) fn from_chromosome(
-        chromosome: ga::Chromosome,
+        chromosome: Chromosome,
         eye: &Eye
     ) -> Self {
         Self {

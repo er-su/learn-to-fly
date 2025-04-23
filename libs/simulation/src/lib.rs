@@ -10,6 +10,8 @@ use nn::matrix_network as mn;
 use lib_genetic_algorithm as ga;
 use lib_config::Config;
 use nalgebra as na;
+
+use ga::{mutation_method, selection_method, crossover_method, chromosome::Chromosome};
 use rand::{RngCore, Rng};
 use std::f32::consts::FRAC_PI_2;
 pub use self::{animal::*, food::*, world::*, eye::*, animal_individual::*, brain::*};
@@ -20,9 +22,10 @@ const SPEED_ACCEL: f32 = 0.2;
 const ROTATION_ACCEL: f32 = FRAC_PI_2;
 const GEN_LEN: usize = 2500;
 
+
 pub struct Simulation {
     world: World,
-    ga: ga::GeneticAlgorithm<ga::RouletteWheelSelection>,
+    ga: ga::GeneticAlgorithm<selection_method::RouletteWheelSelection>,
     age: usize,
 }
 
@@ -30,9 +33,9 @@ impl Simulation {
     pub fn random(rng: &mut dyn RngCore) -> Self {
         let world = World::random(rng);
         let ga = ga::GeneticAlgorithm::new(
-            ga::RouletteWheelSelection,
-            ga::UniformCrossover,
-            ga::GaussianMutation::new(0.01, 0.03),
+            selection_method::RouletteWheelSelection,
+            crossover_method::UniformCrossover,
+            mutation_method::GaussianMutation::new(0.01, 0.03),
         );
 
         Self {

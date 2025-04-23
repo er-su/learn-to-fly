@@ -25,7 +25,7 @@ impl Animal {
         }
     }
 
-    pub fn from_config(rng: &mut dyn RngCore, config: config::Config) -> Self {
+    pub fn from_config(rng: &mut dyn RngCore, config: Config) -> Self {
         let eye = Eye::from_config(config);
         let brain = MatrixBrain::from_config(rng, config);
 
@@ -47,12 +47,12 @@ impl Animal {
         self.rotation
     }
 
-    pub(crate) fn as_chromosome(&self) -> ga::Chromosome {
+    pub(crate) fn as_chromosome(&self) -> Chromosome {
         self.brain.as_chromosome()
     }
 
     pub(crate) fn from_chromosome(
-        chromosome: ga::Chromosome,
+        chromosome: Chromosome,
         rng: &mut dyn RngCore
     ) -> Self {
         let eye = Eye::default();

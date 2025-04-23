@@ -2,18 +2,18 @@ use crate::*;
 
 pub struct AnimalIndividual {
     pub(crate) fitness: f32,
-    pub(crate) chromosome: ga::Chromosome
+    pub(crate) chromosome: Chromosome
 }
 
 impl ga::Individual for AnimalIndividual {
-    fn create(chromosome: ga::Chromosome) -> Self {
+    fn create(chromosome: Chromosome) -> Self {
         Self {
             fitness: 0.0,
             chromosome,
         }
     }
 
-    fn chromosome(&self) -> &ga::Chromosome {
+    fn chromosome(&self) -> &Chromosome {
         &self.chromosome
     }
 

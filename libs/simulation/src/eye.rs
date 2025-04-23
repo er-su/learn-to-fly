@@ -26,7 +26,7 @@ impl Eye {
         }
     }
 
-    pub fn from_config(config: config::Config) -> Self {
+    pub fn from_config(config: Config) -> Self {
         Self {
             fov_range: config.fov_range,
             fov_angle: config.fov_angle,

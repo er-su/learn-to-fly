@@ -1,7 +1,7 @@
-mod chromosome;
-mod selection_method;
-mod crossover_method;
-mod mutation_method;
+pub mod chromosome;
+pub mod selection_method;
+pub mod crossover_method;
+pub mod mutation_method;
 
 use rand::{Rng,RngCore};
 use rand::seq::SliceRandom;
