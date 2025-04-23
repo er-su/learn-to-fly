@@ -1,11 +1,8 @@
 [package]
-name = "lib-genetic-algorithm"
+name = "lib-config"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
 rand = "0.8"
-lib-config = { path = "../config" }
-
-[dev-dependencies]
 rand_chacha = "0.3"

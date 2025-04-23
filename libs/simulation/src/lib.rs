@@ -4,11 +4,11 @@ mod world;
 mod eye;
 mod animal_individual;
 mod brain;
-mod config;
 
 use lib_neural_network as nn;
 use nn::matrix_network as mn;
 use lib_genetic_algorithm as ga;
+use lib_config::Config;
 use nalgebra as na;
 use rand::{RngCore, Rng};
 use std::f32::consts::FRAC_PI_2;
@@ -73,7 +73,7 @@ impl Simulation {
         }
     }
 
-    pub fn optimize_from_config(&mut self, rng: &mut dyn RngCore, config: config::Config) -> Vec<Statistics> {
+    pub fn optimize_from_config(&mut self, rng: &mut dyn RngCore, config: Config) -> Vec<Statistics> {
         todo!()
     }
 

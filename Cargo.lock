@@ -62,9 +62,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "lib-config"
+version = "0.1.0"
+dependencies = [
+ "rand",
+ "rand_chacha",
+]
+
+[[package]]
 name = "lib-genetic-algorithm"
 version = "0.1.0"
 dependencies = [
+ "lib-config",
  "rand",
  "rand_chacha",
 ]
@@ -82,6 +91,7 @@ dependencies = [
 name = "lib-optimization"
 version = "0.1.0"
 dependencies = [
+ "lib-config",
  "lib-simulation",
  "rand",
  "rand_chacha",
@@ -91,6 +101,7 @@ dependencies = [
 name = "lib-simulation"
 version = "0.1.0"
 dependencies = [
+ "lib-config",
  "lib-genetic-algorithm",
  "lib-neural-network",
  "nalgebra",
