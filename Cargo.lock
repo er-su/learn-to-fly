@@ -79,6 +79,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "lib-optimization"
+version = "0.1.0"
+dependencies = [
+ "lib-simulation",
+ "rand",
+ "rand_chacha",
+]
+
+[[package]]
 name = "lib-simulation"
 version = "0.1.0"
 dependencies = [
