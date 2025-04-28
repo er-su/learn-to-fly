@@ -8,6 +8,7 @@ pub trait CrossoverMethod {
     ) -> Chromosome;
 }
 
+#[derive(Debug)]
 pub struct UniformCrossover;
 
 impl CrossoverMethod for UniformCrossover {

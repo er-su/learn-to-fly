@@ -11,7 +11,7 @@ pub struct LayerTopology {
     pub neurons: usize,
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Network {
     layers: Vec<Layer>
 }
@@ -74,7 +74,7 @@ impl Network {
     }
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 struct Layer {
     neurons: Vec<Neuron>,
 }
@@ -112,7 +112,7 @@ impl Layer {
     }
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 struct Neuron {
     bias: f32,
     weights: Vec<f32>

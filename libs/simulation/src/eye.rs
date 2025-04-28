@@ -6,7 +6,7 @@ const FOV_RANGE: f32 = 0.25;
 const FOV_ANGLE: f32 = PI + FRAC_PI_4;
 const CELLS: usize = 9;
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Eye {
     fov_range: f32,
     fov_angle: f32,

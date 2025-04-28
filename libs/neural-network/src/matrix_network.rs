@@ -1,7 +1,7 @@
 use rand::{Rng, RngCore};
 use crate::*;
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct MatrixNetwork {
     layers: Vec<MatrixLayer>
 }

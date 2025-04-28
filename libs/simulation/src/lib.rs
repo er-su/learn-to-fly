@@ -22,12 +22,12 @@ const SPEED_ACCEL: f32 = 0.2;
 const ROTATION_ACCEL: f32 = FRAC_PI_2;
 const GEN_LEN: usize = 2500;
 
-
 pub struct Simulation {
     world: World,
     ga: ga::GeneticAlgorithm<selection_method::RouletteWheelSelection>,
     age: usize,
 }
+
 
 impl Simulation {
     pub fn random(rng: &mut dyn RngCore) -> Self {
@@ -47,6 +47,26 @@ impl Simulation {
 
     pub fn world(&self) -> &World {
         &self.world
+    }
+
+    pub fn from_config(rng: &mut dyn RngCore, config: Config) -> Self {
+        let world = World::from_config(rng, config);
+        let ga = ga::GeneticAlgorithm::new(
+            selection_method::RouletteWheelSelection,
+            crossover_method::UniformCrossover,
+            mutation_method::GaussianMutation::new(config.mutation_chance, config.mutation_coef)
+        );
+
+        Self {
+            world,
+            ga,
+            age: 0
+        }
+    }
+
+    // This might lowkey break everything lets see
+    pub fn set_world(&mut self, world: World) {
+        self.world = world;
     }
 
     // Perform a single step forward
@@ -188,5 +208,15 @@ impl Statistics {
 
     pub fn get_max(self) -> usize {
         self.max
+    }
+}
+
+impl Default for Statistics {
+    fn default() -> Self {
+        Self {
+            min: 0,
+            avg: 0.0,
+            max: 0
+        }
     }
 }

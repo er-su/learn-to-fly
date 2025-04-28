@@ -2,7 +2,7 @@ use lib_neural_network::{matrix_network::MatrixNetwork, LayerTopology};
 
 use crate::*;
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Brain {
     pub(crate) nn: nn::Network,
 }
@@ -68,7 +68,7 @@ impl Brain {
 
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct MatrixBrain {
     pub(crate) nn: mn::MatrixNetwork,
 }

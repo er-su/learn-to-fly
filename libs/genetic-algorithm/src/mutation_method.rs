@@ -4,6 +4,7 @@ pub trait MutationMethod {
     fn mutate(&self, rng: &mut dyn RngCore, child: &mut Chromosome);
 }
 
+#[derive(Debug)]
 pub struct GaussianMutation {
     chance: f32,
     coeff: f32,
@@ -21,6 +22,7 @@ impl GaussianMutation {
 
     pub fn from_config(config: Config) -> Self {
         assert!(config.mutation_chance >= 0.0 && config.mutation_chance <= 1.0);
+        assert!(config.mutation_coef >= 0.0 && config.mutation_coef <= 1.0);
         Self {
             chance: config.mutation_chance,
             coeff: config.mutation_coef,

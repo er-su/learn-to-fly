@@ -1,6 +1,6 @@
 use crate::*;
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Food{
     pub(crate) position: na::Point2<f32>,
 }
